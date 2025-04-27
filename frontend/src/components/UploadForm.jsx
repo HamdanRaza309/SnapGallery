@@ -31,7 +31,7 @@ const UploadForm = () => {
         try {
 
             const res = await axios.post(
-                `/api/upload`,
+                `/api/v1/snap/upload`,
                 formData,
                 {
                     headers: {
