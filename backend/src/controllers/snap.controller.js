@@ -46,4 +46,31 @@ const uploadSnap = async (req, res) => {
     }
 };
 
-export { uploadSnap };
+const fetchAllSnaps = async (req, res) => {
+    try {
+        const allSnaps = await Snap.find();
+
+        if (!allSnaps || allSnaps.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'No snaps found',
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: 'Snaps fetched successfully',
+            data: allSnaps,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch snaps',
+            error: error.message,
+        });
+    }
+};
+
+
+export { uploadSnap, fetchAllSnaps };
