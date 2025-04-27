@@ -14,7 +14,7 @@ function Gallery() {
     useEffect(() => {
         const fetchSnaps = async () => {
             try {
-                const res = await axios.get(`/api/v1/snap/get-snaps`);
+                const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/v1/snap/get-snaps`);
                 console.log(res.data.data);
                 setAllSnaps(res.data.data);
             } catch (error) {
