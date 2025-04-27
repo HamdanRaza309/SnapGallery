@@ -1,9 +1,10 @@
+import Gallery from "./components/Gallery"
 
 function App() {
 
   return (
     <>
-      <h1>Snap Gallery</h1>
+      <Gallery />
     </>
   )
 }

@@ -62,38 +62,45 @@ const UploadForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-96 mx-auto mt-10">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-96 mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold text-center mb-4">Upload Your Content</h2>
+
             <input
                 type="text"
                 placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="border p-2"
+                className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+
             <input
                 type="text"
                 placeholder="Location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="border p-2"
+                className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+
             <textarea
                 placeholder="Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="border p-2"
+                className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                rows="4"
             />
+
             <input
                 type="file"
                 accept='image/*'
                 onChange={(e) => setImage(e.target.files[0])}
-                className="border p-2"
+                className="border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+
             <button
                 type="submit"
-                className="bg-blue-500 text-white p-2 hover:bg-blue-700"
+                className={`bg-blue-500 text-white p-3 rounded-md hover:bg-blue-700 transition duration-200 ease-in-out ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 disabled={loading}>
-                {loading ? 'Uploading' : 'Upload'}
+                {loading ? 'Uploading...' : 'Upload'}
             </button>
         </form>
     );
