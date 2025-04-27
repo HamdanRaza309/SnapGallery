@@ -1,14 +1,19 @@
 import { Snap } from '../models/snap.model.js';
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
 
-const snapUpload = async (req, res) => {
+const uploadSnap = async (req, res) => {
     try {
         // Destructuring title, location, description from req.body and image from req.files
         const { title, location, description } = req.body;
-        const { image } = req.files;
+
+        // console.log('req.body:', req.body);  // Logs all form-data fields
+        // console.log('req.file:', req.file);  // Logs the uploaded file
+
+        // console.log(req.file.fieldname);
+
 
         // Check if required fields are provided
-        if (!title || !location || !image) {
+        if (!title || !location) {
             return res.status(400).json({
                 success: false,
                 message: 'All fields (title, location, image) are required',
@@ -16,7 +21,8 @@ const snapUpload = async (req, res) => {
         }
 
         // Upload image to Cloudinary
-        const imageUrl = await uploadOnCloudinary(image.path);
+        const imageUrl = await uploadOnCloudinary(req.file.path);
+        console.log('imagesUrl', imageUrl);
 
         // Create new snap document in the database
         const snap = await Snap.create({
@@ -40,4 +46,4 @@ const snapUpload = async (req, res) => {
     }
 };
 
-export { snapUpload };
+export { uploadSnap };

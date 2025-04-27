@@ -17,9 +17,12 @@ app.use(express.urlencoded({
     extended: true,
     limit: '16kb'
 }))
-app.use(upload.none())
+// app.use(upload.none())
 app.use(express.static('public'))
 app.use(cookieParser())
 
+import snapRoutes from './routes/snapRoutes.js'
+
+app.use('/api/v1/snap', snapRoutes)
 
 export { app };
