@@ -24,11 +24,16 @@ const UploadForm = ({ onImageUpload }) => {
         formData.append('image', image);
 
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/v1/snap/upload`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
+            const res = await axios.post(
+                `${import.meta.env.VITE_API_BASE_URL}/api/v1/snap/upload`,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                    withCredentials: true
                 }
-            });
+            );
 
             if (res) {
                 alert('Uploaded successfully');
